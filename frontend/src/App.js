@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     '& > * + *': {
       marginTop: theme.spacing(2)
-    }
+    },
+    spinner: {}
   }
 }));
 
@@ -34,7 +35,7 @@ function App() {
         startLoading={() => setIsLoading(true)}
         stopLoading={() => setIsLoading(false)}
       />
-      {isLoading && <CircularProgress />}
+      {isLoading && <CircularProgress style={classes.spinner} />}
       <Snackbar open={error} autoHideDuration={3000} onClose={() => setError(false)}>
         <Alert severity="error">An error occured ...</Alert>
       </Snackbar>

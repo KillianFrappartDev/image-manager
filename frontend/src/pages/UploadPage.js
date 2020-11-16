@@ -38,6 +38,7 @@ const UploadPage = props => {
       props.errorAlert();
     }
     props.stopLoading();
+    if (!response) return;
     if (response.data.success) {
       props.successAlert();
       setUrl(response.data.path);
