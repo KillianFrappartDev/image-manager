@@ -23,11 +23,22 @@ const useStyles = makeStyles(theme => ({
 const UploadPage = props => {
   const classes = useStyles();
 
-  const postImage = async data => {};
+  const postImage = async data => {
+    let response;
+    try {
+      response = await axios.post(process.env.REACT_APP_API_URL + '/upload', data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+    } catch (error) {
+      console.log('[ERROR][POSTIMAGE] Upload image failed');
+    }
+    console.log(response.data.message);
+  };
 
   const uploadHandler = file => {
     const formData = new FormData();
     formData.append('image', file);
+    postImage(formData);
   };
 
   return (
